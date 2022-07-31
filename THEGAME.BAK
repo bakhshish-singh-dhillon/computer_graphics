@@ -1,0 +1,113 @@
+#include<iostream.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+int xc=200,yc=20,flagx=0,flagy=0,yr=400,xr=0,x=0,y=0,ch;
+
+void moveCir()
+{
+if(flagx==1 && flagy==1)
+{
+yc--;
+xc--;
+}
+else if(flagx==0 && flagy==0)
+{
+xc++;
+yc++;
+}
+else if(flagx==1 && flagy==0)
+{
+xc--;
+yc++;
+}
+else if(flagy==1 && flagx==0)
+{
+yc--;
+xc++;
+}
+}
+
+void moveRect()
+{
+if(ch==97 && xr-8>=0)
+{
+xr=xr-8;
+}
+else if(ch==100 && xr+5<560)
+{
+xr=xr+8;
+}
+rectangle(xr,yr,xr+80,yr+20);
+setfillstyle(1,BLUE);
+floodfill(xr+1,yr+1,WHITE);
+}
+
+void check()
+{
+if((y+15)==getmaxy())
+{
+outtextxy(280,240,"Game Over");
+ch=27;
+int a;
+for(a=800;a>200;a=a-20)
+{
+sound(a);
+delay(10);
+nosound();
+}
+return;
+}
+}
+
+void main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,"c:\\turboc3\\bgi");
+rectangle(xr,yr,xr+80,yr+20);
+setfillstyle(1,BLUE);
+floodfill(xr+1,yr+1,WHITE);
+while(ch!=27)
+{
+setfillstyle(1,RED);
+circle(x,y,15);
+floodfill(x,y+1,WHITE);
+delay(10);
+setfillstyle(1,BLACK);
+circle(x,y,15);
+floodfill(x,y+1,BLACK);
+x=xc;
+y=yc;
+if((x+15)==getmaxx())
+{
+flagx=1;
+}
+if((y+15)==getmaxy() || ((y+18)==yr) && x>=(xr-5) && x<=(xr+85))
+{
+flagy=1;
+sound(220);
+delay(100);
+nosound();
+}
+if((y-15)==0)
+{
+flagy=0;
+}
+if(x-15==0)
+{
+flagx=0;
+}
+if(kbhit())
+{
+ch=getch();
+rectangle(xr,yr,xr+80,yr+20);
+setfillstyle(1,BLACK);
+floodfill(xr+1,yr+1,BLACK);
+moveRect();
+}
+moveCir();
+check();
+}
+getch();
+}
+

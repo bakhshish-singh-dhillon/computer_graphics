@@ -1,0 +1,37 @@
+#include<iostream.h>
+#include<conio.h>
+#include<graphics.h>
+#include<stdlib.h>
+void main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,"c:\\turboc3\\bgi");
+float x1,x2,y1,y2,m,b;
+cout<<"Enter value of start point";
+cin>>x1;
+cin>>y1;
+cout<<"Enter value of second point";
+cin>>x2;
+cin>>y2;
+m=(y2-y1)/(x2-x1);
+b=y1-(m*x1);
+while(x1<x2)
+{
+if(m<=1)
+{
+x1=x1+1;
+y1=(m*x1)+b;
+putpixel(x1,y1,WHITE);
+}
+if(m>1)
+{
+y1=y1+1;
+x1=(y1-b)/m;
+putpixel(x1,y1,WHITE);
+}
+}
+getch();
+closegraph();
+}
+
+

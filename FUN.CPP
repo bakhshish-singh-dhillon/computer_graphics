@@ -1,0 +1,17 @@
+#include<iostream.h>
+#include<conio.h>
+#include<graphics.h>
+#include<dos.h>
+#include<stdlib.h>
+void main()
+{
+int gd=DETECT,gm;
+initgraph(&gd,&gm,"c:\\turboc3\\bgi");
+
+arc(30,50,0,180,20);
+arc(30,50,0,180,20);
+bar(20,50,50,150);
+rectangle(70,100,100,70);
+getch();
+closegraph();
+}

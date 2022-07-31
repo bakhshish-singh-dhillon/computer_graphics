@@ -1,0 +1,13 @@
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+printf("Enter a number to find highest power");
+int num,temp=1;
+scanf("%d",num);
+while(temp*num<=1000)
+{
+temp=temp*num;
+}
+printf("The Greatest power for %d is:%d",num,temp);
+}
